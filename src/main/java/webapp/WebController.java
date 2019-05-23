@@ -1,7 +1,8 @@
 package webapp;
 
 
-import com.google.gson.JsonObject;
+import com.google.gson.*;
+import enteties.Product;
 import enteties.User;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -31,20 +32,16 @@ import java.util.List;
 public class WebController {
 
     @RequestMapping(value = "/user",method = RequestMethod.GET)
-    public ModelAndView userId (Model model) {
+    public ModelAndView userId () {
         System.out.println("----userId");
         User user = new User();
-        // Мы передаем шаблону start мы передаем некую модель с именем name, который является пустым объектом класса person
         return new ModelAndView("user","userId",user);
     }
 
     @RequestMapping(value = "/request",method = RequestMethod.POST)
-    public ModelAndView makeRequest(User user) throws IOException {
+    public ModelAndView makeRequestAndPrediction(User user) throws IOException {
         System.out.println("----makeRequest");
-//        JsonObject userIdRequest = new JsonObject();
-//        userIdRequest.addProperty("user_id", user.getId());
-//        System.out.print("userIdRequest: ");
-//        System.out.println(userIdRequest.toString());
+
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
         HttpPost httppost = new HttpPost("http://localhost:5000/index");
         // user_id
@@ -62,17 +59,37 @@ public class WebController {
         System.out.println(response);
         HttpEntity entity = response.getEntity();
         String responseText = EntityUtils.toString(entity, "UTF-8");
+
+        System.out.println("responseText: ");
         System.out.println(responseText);
-        user.setText(responseText);
 
-        return new ModelAndView("prediction","predict",user);
+        String jsonArrayString = responseText;
+        JsonParser jsonParser = new JsonParser();
+
+        JsonArray arrayFromString = jsonParser.parse(jsonArrayString).getAsJsonArray();
+        System.out.println(arrayFromString.toString());
+
+        System.out.println(arrayFromString.get(0));
+        System.out.println(arrayFromString.get(0).getClass());
+        System.out.println("---------------------------------");
+
+        for (JsonElement i : arrayFromString){
+            System.out.println(i);
+            JsonObject jobj = new Gson().fromJson(i, JsonObject.class);
+            System.out.println(jobj.get("name"));
+            System.out.println(jobj.get("description"));
+            System.out.println(jobj.get("picture"));
+            System.out.println("------------------------------------");
+
+            String name = String.valueOf(jobj.get("name"));
+            String description = String.valueOf(jobj.get("description"));
+            String picture = String.valueOf(jobj.get("picture"));
+            String price = String.valueOf(jobj.get("price"));
+
+            user.addProduct(new Product(name,description,picture,price));
+        }
+
+        return new ModelAndView("prediction","user",user);
     }
 
-    @RequestMapping(value = "/prediction",method = RequestMethod.POST)
-    public ModelAndView makePrediction(User user) {
-        System.out.println("----makeRequest");
-        System.out.println(user);
-
-        return new ModelAndView("prediction","predict",user);
-    }
 }

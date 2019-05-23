@@ -5,6 +5,31 @@
     <title>Prediction</title>
 </head>
 <body>
-<span th:text="${user.text}"></span>
+
+
+
+<table border="1" width="600">
+    <tr th:each="r : ${user.productArrayList}">
+        <td>
+            <span><img th:src="${r.picture}" alt="картинка" height="100" width="100"></span>
+        </td>
+
+        <td>
+            <span th:text="${r.name}"></span>
+        </td>
+
+        <td>
+            <span th:text="${r.description}"></span>
+        </td>
+
+        <td>
+            <span th:text="${r.price}"></span>
+        </td>
+
+
+    </tr>
+
+</table>
+
 </body>
 </html>

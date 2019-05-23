@@ -1,17 +1,25 @@
 package enteties;
 
+import java.util.ArrayList;
+
 public class User {
 
     public String id;
-    public String text;
+    ArrayList<Product> productArrayList = new ArrayList<Product>();
 
-    public String getText() {
-        return text;
+
+    public ArrayList<Product> getProductArrayList() {
+        return productArrayList;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setProductArrayList(ArrayList<Product> productArrayList) {
+        this.productArrayList = productArrayList;
     }
+
+    public void addProduct(Product product){
+        productArrayList.add(product);
+    }
+
 
     public User () {}
 
@@ -21,7 +29,7 @@ public class User {
     public void setId(String id) {this.id = id;}
     public String getId() {return id;}
 
-    public String toString() {return "ID: " + this.id;}
+    public String toString() {return "ID: " + this.id + " LIST: " + this.productArrayList;}
 
 
 }
