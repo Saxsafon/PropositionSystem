@@ -26,7 +26,7 @@ public class WebController {
 
 
     @RequestMapping(value = "/user",method = RequestMethod.GET)
-    public ModelAndView userId () {
+    public ModelAndView userName () {
         User user = new User();
         return new ModelAndView("user","name",user);
     }
