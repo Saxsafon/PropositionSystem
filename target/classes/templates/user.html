@@ -1,41 +1,60 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>User</title>
 
-    <style type="text/css">
-    table{
-    border-collapse: collapse;
-    margin-top: 10px;
-    }
-    td{
-    padding: 5px; /* Поля вокруг содержимого ячеек */
-    border: 0px; /* Граница вокруг ячеек */
-    }
-    body {
-    font-family: Arial, Verdana,  sans-serif; /* Семейство шрифтов */
-    font-size: 11pt; /* Размер основного шрифта в пунктах  */
-    background: url(/img/backgroud1.jpg);
-    color: #333; /* Цвет основного текста */
+    <style>
+
+body{
+background: url(/img/background.png);
+background-size: 100%;
 }
 
-    </style>
+img{
+width: 100px;
+margin: 48px 0 0  823px;
+}
+.superbutton {
+width:120px;
+height:30px;
+border-radius:15px;
+border-color: #A9A9A9;
+background: #87CEEB;
+color:#fff;
+font-size:18px;
+cursor:pointer;
+}
+
+.superbutton:hover{
+background:#4682B4;
+}
+
+.superbutton:focus{
+outline:none;
+}
+
+form{
+zoom: 2;
+position:absolute;
+top:50%;
+left:50%;
+margin: 12px 0 0 -135px;
+}
+
+
+</style>
 
 
 </head>
 <body>
 
 
-<h1>
-    <img th:src="@{/img/logo1.png}" alt="memorynotfound logo" width="189" height="255"/>
-</h1>
-<h1>Hi, everyone!</h1>
+
 
 <form action="/request" method="post">
-    <input type="text" name="id"/>
-    <input type="submit" value="Predict"/>
+    <input type="text" required placeholder="Иван Иванов" name="name"/>
+    <input type="submit" class="superbutton" name="submit" value="Predict"/>
 </form>
-
 </body>
 </html>

@@ -1,9 +1,8 @@
 package enteties;
 
 public class Product {
-    String name;
+    String product;
     String description;
-    String picture;
     String price;
 
     public String getPrice() {
@@ -15,20 +14,11 @@ public class Product {
     }
 
     public Product(){}
-    public Product(String name,String description,String picture,String price) {
-        this.name = name;
+    public Product(String product,String description,String price) {
+        this.product = product;
         this.description = description;
-        this.picture = picture;
         this.price = price;
     }
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -37,13 +27,13 @@ public class Product {
         this.description = description;
     }
 
-    public String getName() {
-        return name;
+    public String getProduct() {
+        return product;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProduct(String product) {
+        this.product = product;
     }
 
-    public String toString() {return this.name + " " + this.description + " " + this.picture + " " + this.price;}
+    public String toString() {return this.product + " " + this.description + " " + this.price;}
 }

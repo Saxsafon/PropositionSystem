@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class User {
 
-    public String id;
+    public String name;
     ArrayList<Product> productArrayList = new ArrayList<Product>();
 
 
@@ -22,14 +22,13 @@ public class User {
 
 
     public User () {}
-
-    public User (String id) {
-        this.id = id;
+    public User (String name) {
+        this.name = name;
     }
-    public void setId(String id) {this.id = id;}
-    public String getId() {return id;}
+    public void setName(String name) {this.name = name;}
+    public String getName() {return name;}
 
-    public String toString() {return "ID: " + this.id + " LIST: " + this.productArrayList;}
+    public String toString() {return "Name: " + this.name + " LIST: " + this.productArrayList;}
 
 
 }
