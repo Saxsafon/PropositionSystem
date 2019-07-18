@@ -3,12 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>User</title>
+
+    <style type="text/css">
+    table{
+    border-collapse: collapse;
+    margin-top: 10px;
+    }
+    td{
+    padding: 5px; /* Поля вокруг содержимого ячеек */
+    border: 0px; /* Граница вокруг ячеек */
+    }
+    body {
+    font-family: Arial, Verdana,  sans-serif; /* Семейство шрифтов */
+    font-size: 11pt; /* Размер основного шрифта в пунктах  */
+    background: url(/img/backgroud1.jpg);
+    color: #333; /* Цвет основного текста */
+}
+
+    </style>
+
+
 </head>
 <body>
 
+
 <h1>
-    <img th:src="@{/img/logo1.png}" alt="memorynotfound logo"/>
+    <img th:src="@{/img/logo1.png}" alt="memorynotfound logo" width="189" height="255"/>
 </h1>
+<h1>Hi, everyone!</h1>
 
 <form action="/request" method="post">
     <input type="text" name="id"/>

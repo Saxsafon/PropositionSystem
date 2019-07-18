@@ -48,38 +48,38 @@ public class WebController {
 
         List<NameValuePair> params = new ArrayList<NameValuePair>(1);
         params.add(new BasicNameValuePair("user_id", user.getId()));
-        System.out.print("Params: ");
-        System.out.println(params);
+//        System.out.print("Params: ");
+//        System.out.println(params);
 
         httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
 
         //Execute and get the response.
         HttpResponse response = httpClient.execute(httppost);
-        System.out.print("response: ");
-        System.out.println(response);
+        // System.out.print("response: ");
+        // System.out.println(response);
         HttpEntity entity = response.getEntity();
         String responseText = EntityUtils.toString(entity, "UTF-8");
 
-        System.out.println("responseText: ");
-        System.out.println(responseText);
+        // System.out.println("responseText: ");
+        // System.out.println(responseText);
 
         String jsonArrayString = responseText;
         JsonParser jsonParser = new JsonParser();
 
         JsonArray arrayFromString = jsonParser.parse(jsonArrayString).getAsJsonArray();
-        System.out.println(arrayFromString.toString());
+//         System.out.println(arrayFromString.toString());
 
-        System.out.println(arrayFromString.get(0));
-        System.out.println(arrayFromString.get(0).getClass());
-        System.out.println("---------------------------------");
+//        System.out.println(arrayFromString.get(0));
+//        System.out.println(arrayFromString.get(0).getClass());
+//        System.out.println("---------------------------------");
 
         for (JsonElement i : arrayFromString){
-            System.out.println(i);
+//            System.out.println(i);
             JsonObject jobj = new Gson().fromJson(i, JsonObject.class);
-            System.out.println(jobj.get("name"));
-            System.out.println(jobj.get("description"));
-            System.out.println(jobj.get("picture"));
-            System.out.println("------------------------------------");
+//            System.out.println(jobj.get("name"));
+//            System.out.println(jobj.get("description"));
+//            System.out.println(jobj.get("picture"));
+//            System.out.println("------------------------------------");
 
             String name = String.valueOf(jobj.get("name"));
             String description = String.valueOf(jobj.get("description"));
